@@ -8,7 +8,22 @@ public class Rectangle {
 	private int width;
 	private int height;
 	private boolean selected;
+		
+	public Rectangle() {
 	
+	}
+
+	public Rectangle(Point upperLeftPoint, int width, int height) {
+		this.upperLeftPoint = upperLeftPoint;
+		this.width = width;
+		this.height = height;
+	}
+
+	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected) {
+		this(upperLeftPoint, width, height);
+		this.selected = selected;
+	}
+
 	// Površina pravougaonika P = w*h
 	public int area() {
 		return width * height;
@@ -18,6 +33,31 @@ public class Rectangle {
 	public int circumference() {
 		return 2 * (width + height);
 	}
+	
+	public String toString() {
+		return "Upper left point: " + upperLeftPoint + ", width = " + width 
+				+ ", height = " + height;
+	}
+	
+	public boolean equals(Object obj) {
+		if(obj instanceof Rectangle) {
+			Rectangle pomocna = (Rectangle) obj;
+			if (this.upperLeftPoint.equals(pomocna.upperLeftPoint) && this.width == pomocna.width 
+					&& this.height == pomocna.height)
+				return true;
+			else 
+				return false;
+		} else
+			return false;
+	}
+	
+	public boolean contains(int x, int y) {
+		return (x >= this.upperLeftPoint.getX() 
+				&& x <= this.upperLeftPoint.getX() + width
+				&& y >= this.upperLeftPoint.getY()
+				&& y <= this.upperLeftPoint.getY() + height);
+	}
+
 	
 	// Metode pristupa
 	public Point getUpperLeftPoint() {
