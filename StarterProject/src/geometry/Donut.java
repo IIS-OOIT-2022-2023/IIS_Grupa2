@@ -79,4 +79,9 @@ public class Donut extends Circle {
 				innerRadius*2, innerRadius *2); //nacrta unutrasnji krug
 	}
 	
+	public int compareTo(Object o) {
+		if (o instanceof Donut)
+			return (int) (this.area() - ((Donut) o).area());
+		return 0;
+	}
 }
